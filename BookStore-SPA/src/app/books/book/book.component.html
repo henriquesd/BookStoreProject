@@ -13,8 +13,8 @@
         <div class="invalid-feedback" *ngIf="author.invalid && author.touched">Please inform the author's name.</div>
       </div>
       <div class="form-group">
-        <input name="description" #description="ngModel" [(ngModel)]="service.formData.description" class="form-control" placeholder="Description"
-          [ngClass]="{'is-invalid': form.controls['description']?.invalid && form.controls['description']?.touched}" required>
+        <textarea name="description" #description="ngModel" [(ngModel)]="service.formData.description" class="form-control" placeholder="Description"
+          [ngClass]="{'is-invalid': form.controls['description']?.invalid && form.controls['description']?.touched}" required rows="4"></textarea>
         <div class="invalid-feedback" *ngIf="description.invalid && description.touched">Please inform the description</div>
       </div>
       <div class="form-group">

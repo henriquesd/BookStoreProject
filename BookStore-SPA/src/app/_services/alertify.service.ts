@@ -7,8 +7,8 @@ declare let alertify: any;
 export class AlertifyService {
 
 constructor() { }
-
   confirm(message: string, okCallback: () => any) {
+    alertify.defaults.glossary.title = 'Confirm';
     alertify.confirm(message, function(e) {
       if (e) {
         okCallback();
