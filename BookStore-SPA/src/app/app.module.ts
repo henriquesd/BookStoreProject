@@ -13,6 +13,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BookService } from './_services/book.service';
 import { BookComponent } from './books/book/book.component';
 import { AlertifyService } from './_services/alertify.service';
+import { GenderComponent } from './genders/gender/gender.component';
+import { GenderListComponent } from './genders/gender-list/gender-list.component';
+import { GenderService } from './_services/gender.service';
 
 @NgModule({
    declarations: [
@@ -20,7 +23,9 @@ import { AlertifyService } from './_services/alertify.service';
       NavComponent,
       BookComponent,
       BookListComponent,
-      HomeComponent
+      HomeComponent,
+      GenderComponent,
+      GenderListComponent
    ],
    imports: [
       BrowserModule,
@@ -33,7 +38,8 @@ import { AlertifyService } from './_services/alertify.service';
    ],
    providers: [
       AlertifyService,
-      BookService
+      BookService,
+      GenderService
    ],
    bootstrap: [
       AppComponent

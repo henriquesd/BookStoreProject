@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Book } from 'src/app/_models/Book';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
-import { BookService } from 'src/app/_services/book.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { HttpClient } from '@angular/common/http';
+import { Gender } from 'src/app/_models/Gender';
+import { GenderService } from 'src/app/_services/gender.service';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css']
+  selector: 'app-gender',
+  templateUrl: './gender.component.html',
+  styleUrls: ['./gender.component.css']
 })
-export class BookComponent implements OnInit {
-  book: Book;
+export class GenderComponent implements OnInit {
+  gender: Gender;
   bsConfig: Partial<BsDatepickerConfig>;
-  formData: Book;
+  formData: Gender;
   genders: any;
 
-  constructor(public service: BookService,
+  constructor(public service: GenderService,
               private router: Router,
               private route: ActivatedRoute,
               private alertify: AlertifyService,
@@ -38,7 +38,7 @@ export class BookComponent implements OnInit {
     });
 
     if (id != null) {
-      this.service.getBookById(id).catch(err => {
+      this.service.getGenderById(id).catch(() => {
         this.alertify.error('An error occurred on get the record.');
       });
     } else {
@@ -47,7 +47,7 @@ export class BookComponent implements OnInit {
 
     this.http.get('http://localhost:5000/api/genders').subscribe(response => {
       this.genders = response;
-    }, error => {
+    }, () => {
       this.alertify.error('An error occurred on get the records.');
     });
   }
@@ -59,12 +59,7 @@ export class BookComponent implements OnInit {
 
     this.service.formData = {
       id: 0,
-      name: '',
-      author: '',
-      description: '',
-      value: null,
-      publishDate: null,
-      genderId: null
+      description: ''
     };
   }
 
@@ -77,27 +72,27 @@ export class BookComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    this.service.addBook(form.form.value).subscribe(() => {
+    this.service.addGender(form.form.value).subscribe(() => {
       this.alertify.success('Registration successful');
       this.resetForm(form);
-      this.router.navigate(['/books']);
-    }, error => {
+      this.router.navigate(['/genders']);
+    }, () => {
       this.alertify.error('An error occurred on insert the record.');
     });
   }
 
   updateRecord(form: NgForm) {
-    this.service.updateBook(form.form.value.id, form.form.value).subscribe(() => {
+    this.service.updateGender(form.form.value.id, form.form.value).subscribe(() => {
       this.alertify.success('Updated successful');
       this.resetForm(form);
-      this.router.navigate(['/books']);
-    }, error => {
+      this.router.navigate(['/genders']);
+    }, () => {
       this.alertify.error('An error occurred on update the record.');
     });
   }
 
   cancel() {
-    this.router.navigate(['/books']);
+    this.router.navigate(['/genders']);
   }
 
 }
