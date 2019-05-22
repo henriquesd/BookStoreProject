@@ -10,5 +10,7 @@ namespace BookStore.API.Models
         public string Description { get; set; }
         public double Value { get; set; }
         public DateTime PublishDate { get; set; }
+        public int GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
     }
 }

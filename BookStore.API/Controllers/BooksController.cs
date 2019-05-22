@@ -19,14 +19,14 @@ namespace BookStore.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBooks([FromQuery] Book book)
         {
-            var books = await _context.Books.ToListAsync();
+            var books = await _context.Books.Include(b => b.Gender).ToListAsync();
             return Ok(books);
         }
 
         [HttpGet("{id}", Name="GetBook")]
         public async Task<IActionResult> GetBook(int id)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(b => b.Id == id);
+            var book = await _context.Books.Include(b => b.Gender).FirstOrDefaultAsync(b => b.Id == id);
             return Ok(book);
         }
 

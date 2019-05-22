@@ -25,6 +25,8 @@ namespace BookStore.API.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<int>("GenderId");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("PublishDate");
@@ -33,7 +35,29 @@ namespace BookStore.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenderId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookStore.API.Models.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+                });
+
+            modelBuilder.Entity("BookStore.API.Models.Book", b =>
+                {
+                    b.HasOne("BookStore.API.Models.Gender", "Gender")
+                        .WithMany("Books")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
