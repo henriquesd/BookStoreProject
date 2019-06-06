@@ -1,11 +1,11 @@
 <div class="jumbtron">
   <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="col-md-5 form">
-      <h2 class="text-center text-primary">Gender</h2>
+      <h2 class="text-center text-primary">Category</h2>
       <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
       <div class="form-group">
         <input name="description" #description="ngModel" [(ngModel)]="service.formData.description" class="form-control" required
-          [ngClass]="{'is-invalid': form.controls['description']?.invalid && form.controls['description']?.touched}" placeholder="Gender">
-        <div class="invalid-feedback" *ngIf="description.invalid && description.touched">Please inform the gender.</div>
+          [ngClass]="{'is-invalid': form.controls['description']?.invalid && form.controls['description']?.touched}" placeholder="Category">
+        <div class="invalid-feedback" *ngIf="description.invalid && description.touched">Please inform the category.</div>
       </div>
       <div class="form-group text-center">
           <button class="btn btn-success mr-2" [disabled]="form.invalid" type="submit">Save</button>

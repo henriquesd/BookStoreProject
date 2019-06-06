@@ -8,6 +8,6 @@ namespace BookStore.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options) { }
 
          public DbSet<Book> Books {get;set;}
-         public DbSet<Gender> Genders {get;set;}
+         public DbSet<Category> Categories {get;set;}
     }
 }

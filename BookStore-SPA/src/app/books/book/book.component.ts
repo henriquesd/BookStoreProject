@@ -16,7 +16,7 @@ export class BookComponent implements OnInit {
   book: Book;
   bsConfig: Partial<BsDatepickerConfig>;
   formData: Book;
-  genders: any;
+  categories: any;
 
   constructor(public service: BookService,
               private router: Router,
@@ -45,8 +45,8 @@ export class BookComponent implements OnInit {
       this.resetForm();
     }
 
-    this.http.get('http://localhost:5000/api/genders').subscribe(response => {
-      this.genders = response;
+    this.http.get('http://localhost:5000/api/categories').subscribe(response => {
+      this.categories = response;
     }, error => {
       this.alertify.error('An error occurred on get the records.');
     });
@@ -64,7 +64,7 @@ export class BookComponent implements OnInit {
       description: '',
       value: null,
       publishDate: null,
-      genderId: null
+      categoryId: null
     };
   }
 

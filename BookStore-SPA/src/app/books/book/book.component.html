@@ -18,13 +18,13 @@
         <div class="invalid-feedback" *ngIf="description.invalid && description.touched">Please inform the description</div>
       </div>
       <div class="form-group">
-          <select class="form-control" name="genderId" #genderId [(ngModel)]="service.formData.genderId" required>
-              <option value="null" disabled selected hidden>Gender</option>
-              <option *ngFor="let gender of genders" value="{{gender.id}}">
-                  {{gender.description}}
+          <select class="form-control" name="categoryId" #categoryId [(ngModel)]="service.formData.categoryId" required>
+              <option value="null" disabled selected hidden>Category</option>
+              <option *ngFor="let category of categories" value="{{category.id}}">
+                  {{category.description}}
               </option>
             </select>
-        <div class="invalid-feedback" *ngIf="genderId.invalid && genderId.touched">Please inform the gender</div>
+        <div class="invalid-feedback" *ngIf="categoryId.invalid && categoryId.touched">Please inform the category</div>
       </div>
       <div class="form-group">
         <input name="value" #value="ngModel" [(ngModel)]="service.formData.value" class="form-control" placeholder="Value" type="number"

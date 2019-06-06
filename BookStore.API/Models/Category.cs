@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace BookStore.API.Models
 {
-    public class Gender
+    public class Category
     {
         public int Id { get; set; }
         public string Description { get; set; }

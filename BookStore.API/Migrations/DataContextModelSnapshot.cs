@@ -23,9 +23,9 @@ namespace BookStore.API.Migrations
 
                     b.Property<string>("Author");
 
-                    b.Property<string>("Description");
+                    b.Property<int>("CategoryId");
 
-                    b.Property<int>("GenderId");
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
@@ -35,12 +35,12 @@ namespace BookStore.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenderId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookStore.API.Models.Gender", b =>
+            modelBuilder.Entity("BookStore.API.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -49,14 +49,14 @@ namespace BookStore.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genders");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("BookStore.API.Models.Book", b =>
                 {
-                    b.HasOne("BookStore.API.Models.Gender", "Gender")
+                    b.HasOne("BookStore.API.Models.Category", "Category")
                         .WithMany("Books")
-                        .HasForeignKey("GenderId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

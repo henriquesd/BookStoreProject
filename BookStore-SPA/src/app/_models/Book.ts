@@ -5,5 +5,5 @@ export interface Book {
     description: string;
     value: number;
     publishDate: Date;
-    genderId: number;
+    categoryId: number;
 }

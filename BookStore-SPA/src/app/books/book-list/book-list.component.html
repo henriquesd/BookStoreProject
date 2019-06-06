@@ -24,7 +24,7 @@
           <th>Book Name</th>
           <th>Author</th>
           <th>Description</th>
-          <th>Gender</th>
+          <th>Category</th>
           <th>Value</th>
           <th>Publish Date</th>
           <th>Options</th>
@@ -35,7 +35,7 @@
           <td>{{book.name}}</td>
           <td>{{book.author}}</td>
           <td>{{book.description.length > 25 ? (book.description | slice : 0:25) + '...' : book.description}}</td>
-          <td>{{book.gender.description}}</td>
+          <td>{{book.category.description}}</td>
           <td>{{book.value | currency}}</td>
           <td>{{book.publishDate | date: 'mediumDate'}}</td>
           <td class="action-button-column">

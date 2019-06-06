@@ -13,9 +13,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BookService } from './_services/book.service';
 import { BookComponent } from './books/book/book.component';
 import { AlertifyService } from './_services/alertify.service';
-import { GenderComponent } from './genders/gender/gender.component';
-import { GenderListComponent } from './genders/gender-list/gender-list.component';
-import { GenderService } from './_services/gender.service';
+import { CategoryComponent } from './categories/category/category.component';
+import { CategoryListComponent } from './categories/category-list/category-list.component';
+import { CategoryService } from './_services/category.service';
 
 @NgModule({
    declarations: [
@@ -24,8 +24,8 @@ import { GenderService } from './_services/gender.service';
       BookComponent,
       BookListComponent,
       HomeComponent,
-      GenderComponent,
-      GenderListComponent
+      CategoryComponent,
+      CategoryListComponent
    ],
    imports: [
       BrowserModule,
@@ -39,7 +39,7 @@ import { GenderService } from './_services/gender.service';
    providers: [
       AlertifyService,
       BookService,
-      GenderService
+      CategoryService
    ],
    bootstrap: [
       AppComponent

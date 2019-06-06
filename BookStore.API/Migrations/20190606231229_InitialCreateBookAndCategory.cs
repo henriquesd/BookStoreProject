@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStore.API.Migrations
 {
-    public partial class InitialCreateWithGender : Migration
+    public partial class InitialCreateBookAndCategory : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Genders",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace BookStore.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genders", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -31,23 +31,23 @@ namespace BookStore.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     Value = table.Column<double>(nullable: false),
                     PublishDate = table.Column<DateTime>(nullable: false),
-                    GenderId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_Genders_GenderId",
-                        column: x => x.GenderId,
-                        principalTable: "Genders",
+                        name: "FK_Books_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_GenderId",
+                name: "IX_Books_CategoryId",
                 table: "Books",
-                column: "GenderId");
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -56,7 +56,7 @@ namespace BookStore.API.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Genders");
+                name: "Categories");
         }
     }
 }

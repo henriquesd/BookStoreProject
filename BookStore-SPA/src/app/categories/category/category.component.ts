@@ -4,21 +4,21 @@ import { NgForm } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { HttpClient } from '@angular/common/http';
-import { Gender } from 'src/app/_models/Gender';
-import { GenderService } from 'src/app/_services/gender.service';
+import { Category } from 'src/app/_models/Category';
+import { CategoryService } from 'src/app/_services/category.service';
 
 @Component({
-  selector: 'app-gender',
-  templateUrl: './gender.component.html',
-  styleUrls: ['./gender.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
-export class GenderComponent implements OnInit {
-  gender: Gender;
+export class CategoryComponent implements OnInit {
+  category: Category;
   bsConfig: Partial<BsDatepickerConfig>;
-  formData: Gender;
-  genders: any;
+  formData: Category;
+  categories: any;
 
-  constructor(public service: GenderService,
+  constructor(public service: CategoryService,
               private router: Router,
               private route: ActivatedRoute,
               private alertify: AlertifyService,
@@ -38,15 +38,15 @@ export class GenderComponent implements OnInit {
     });
 
     if (id != null) {
-      this.service.getGenderById(id).catch(() => {
+      this.service.getCategoryById(id).catch(() => {
         this.alertify.error('An error occurred on get the record.');
       });
     } else {
       this.resetForm();
     }
 
-    this.http.get('http://localhost:5000/api/genders').subscribe(response => {
-      this.genders = response;
+    this.http.get('http://localhost:5000/api/categories').subscribe(response => {
+      this.categories = response;
     }, () => {
       this.alertify.error('An error occurred on get the records.');
     });
@@ -72,27 +72,27 @@ export class GenderComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    this.service.addGender(form.form.value).subscribe(() => {
+    this.service.addCategory(form.form.value).subscribe(() => {
       this.alertify.success('Registration successful');
       this.resetForm(form);
-      this.router.navigate(['/genders']);
+      this.router.navigate(['/categories']);
     }, () => {
       this.alertify.error('An error occurred on insert the record.');
     });
   }
 
   updateRecord(form: NgForm) {
-    this.service.updateGender(form.form.value.id, form.form.value).subscribe(() => {
+    this.service.updateCategory(form.form.value.id, form.form.value).subscribe(() => {
       this.alertify.success('Updated successful');
       this.resetForm(form);
-      this.router.navigate(['/genders']);
+      this.router.navigate(['/categories']);
     }, () => {
       this.alertify.error('An error occurred on update the record.');
     });
   }
 
   cancel() {
-    this.router.navigate(['/genders']);
+    this.router.navigate(['/categories']);
   }
 
 }
