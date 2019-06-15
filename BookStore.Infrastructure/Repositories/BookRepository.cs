@@ -1,7 +1,6 @@
 ﻿using BookStore.Domain.Interfaces;
 using BookStore.Domain.Models;
 using BookStore.Infrastructure.Contexts;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,7 +26,7 @@ namespace BookStore.Infrastructure.Repositories
             return await _context.Books.Include(b => b.Category).FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public async Task Post([FromBody] Book book)
+        public async Task Post(Book book)
         {
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
