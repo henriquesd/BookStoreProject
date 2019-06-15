@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Infrascructure\\BookStore.Infrascructure.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\BookStore.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\BookStore.Domain.csproj",
+        "projectName": "BookStore.Domain",
+        "projectPath": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\BookStore.Domain.csproj",
+        "packagesPath": "C:\\Users\\Henrique\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Henrique\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Infrascructure\\BookStore.Infrascructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Infrascructure\\BookStore.Infrascructure.csproj",
+        "projectName": "BookStore.Infrascructure",
+        "projectPath": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Infrascructure\\BookStore.Infrascructure.csproj",
+        "packagesPath": "C:\\Users\\Henrique\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Infrascructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Henrique\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\BookStore.Domain.csproj": {
+                "projectPath": "C:\\Users\\Henrique\\source\\repos\\BookStore\\BookStore.Domain\\BookStore.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Design": {
+              "target": "Package",
+              "version": "[2.0.0-preview1-final, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

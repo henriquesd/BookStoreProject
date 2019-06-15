@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using BookStore.API.Data;
-using BookStore.API.Models;
+using BookStore.Domain.Interfaces;
+using BookStore.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,31 +10,31 @@ namespace BookStore.API.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly DataContext  _context;
-        public BooksController(DataContext context)
+        private readonly IBookRepository _bookRepository;
+
+        public BooksController(IBookRepository bookRepository)
         {
-            _context = context;
+            _bookRepository = bookRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetBooks([FromQuery] Book book)
         {
-            var books = await _context.Books.Include(b => b.Category).ToListAsync();
+            var books = await _bookRepository.GetBooks();
             return Ok(books);
         }
 
         [HttpGet("{id}", Name="GetBook")]
         public async Task<IActionResult> GetBook(int id)
         {
-            var book = await _context.Books.Include(b => b.Category).FirstOrDefaultAsync(b => b.Id == id);
+            var book = await _bookRepository.GetBook(id);
             return Ok(book);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Book book)
         {
-            _context.Books.Add(book);
-            await _context.SaveChangesAsync();
+            await _bookRepository.Post(book);
             
              return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
         }
@@ -49,11 +49,9 @@ namespace BookStore.API.Controllers
 
             try
             {
-                _context.Entry(book).State = EntityState.Modified;
-                _context.Update(book);
-                await _context.SaveChangesAsync();
+                await _bookRepository.Put(book);
 
-                 return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
+                return CreatedAtAction(nameof(GetBooks), new { id = book.Id }, book);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,22 +70,21 @@ namespace BookStore.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var book = await _context.Books.SingleOrDefaultAsync(b => b.Id == id);
+            var book = await _bookRepository.GetBook(id);
 
-             if (book == null)
+            if (book == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(book);
-            await _context.SaveChangesAsync();
+            await _bookRepository.Delete(id);
 
             return Ok();
         }
 
         private bool BookExists(int id)
         {
-            return _context.Books.Find(id) != null;
+            return _bookRepository.BookExists(id);
         }
     }
 }

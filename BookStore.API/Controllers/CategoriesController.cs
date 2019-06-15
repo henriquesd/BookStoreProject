@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using BookStore.API.Data;
-using BookStore.API.Models;
+using BookStore.Domain.Interfaces;
+using BookStore.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,33 +10,32 @@ namespace BookStore.API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly DataContext  _context;
-        public CategoriesController(DataContext context)
+        private readonly ICategoryRepository _categoryRepository;
+
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCategories([FromQuery] Category category)
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _categoryRepository.GetCategories();
             return Ok(categories);
         }
 
-        [HttpGet("{id}", Name="GetCategory")]
+        [HttpGet("{id}", Name = "GetCategory")]
         public async Task<IActionResult> GetCategory(int id)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(b => b.Id == id);
+            var category = await _categoryRepository.GetCategory(id);
             return Ok(category);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
-            
-             return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
+            await _categoryRepository.Post(category);
+            return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
         }
 
         [HttpPut("{id}")]
@@ -49,11 +48,9 @@ namespace BookStore.API.Controllers
 
             try
             {
-                _context.Entry(category).State = EntityState.Modified;
-                _context.Update(category);
-                await _context.SaveChangesAsync();
+                await _categoryRepository.Put(category);
 
-                 return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
+                return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,22 +68,21 @@ namespace BookStore.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var category = await _context.Categories.SingleOrDefaultAsync(b => b.Id == id);
+            var category = await _categoryRepository.GetCategory(id);
 
-             if (category == null)
+            if (category == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(category);
-            await _context.SaveChangesAsync();
+            await _categoryRepository.Delete(id);
 
             return Ok();
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Categories.Find(id) != null;
+            return _categoryRepository.CategoryExists(id);
         }
     }
 }
