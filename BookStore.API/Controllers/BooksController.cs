@@ -18,7 +18,7 @@ namespace BookStore.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBooks([FromQuery] Book book)
+        public async Task<IActionResult> GetBooks()
         {
             var books = await _bookRepository.GetBooks();
             return Ok(books);

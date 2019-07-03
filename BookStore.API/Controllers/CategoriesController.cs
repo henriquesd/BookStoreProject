@@ -18,7 +18,7 @@ namespace BookStore.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategories([FromQuery] Category category)
+        public async Task<IActionResult> GetCategories()
         {
             var categories = await _categoryRepository.GetCategories();
             return Ok(categories);
